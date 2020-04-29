@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Pets</title>
+</head>
+<body>
+<h1>Add a New Pet</h1>
+
+<form action="#" th:action="@{/addPet}" th:object="${pet}" method="POST">
+
+  <div>
+    <label th:for="name">Name</label>
+    <input type="text" th:field="*{name}" />
+    <p th:errors="*{name}"></p>
+  </div>
+
+
+  <div>
+    <label th:for="species">Dog</label>
+    <input type="radio" th:field="*{species}" value="0" />
+    <label th:for="species">Cat</label>
+    <input type="radio" th:field="*{species}" value="1" />
+    <p th:errors="*{species}"></p>
+  </div>
+
+
+  <div>
+    <label th:for="breed">Breed</label>
+    <input type="text" th:field="*{breed}" />
+    <p th:errors="*{breed}"></p>
+  </div>
+
+  <div>
+  <label th:for="age">Age</label>
+  <input type="number" th:field="*{age}" />
+    <p th:errors="*{age}"></p>
+  </div>
+
+  <div>
+    <label th:for="fixed">Fixed</label>
+    <input type="radio" th:field="*{fixed}" value="1" />
+    <label th:for="fixed">Unfixed</label>
+    <input type="radio" th:field="*{fixed}" value="0" />
+    <p th:errors="*{fixed}"></p>
+  </div>
+
+  <div>
+    <input type="submit" value="Add Pet" />
+  </div>
+  <a href="/pets/index">Back to list of pets</a>
+</form>
+</body>
+</html>
