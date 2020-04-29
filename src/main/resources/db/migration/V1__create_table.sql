@@ -3,6 +3,6 @@ CREATE TABLE pets(
   name VARCHAR(255) NOT NULL,
   breed VARCHAR(255) NOT NULL,
   age INTEGER NOT NULL,
-  species VARCHAR(255) NOT NULL,
+  species_id INTEGER NOT NULL,
   fixed BOOLEAN NOT NULL
 );

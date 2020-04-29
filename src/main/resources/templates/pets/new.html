@@ -14,15 +14,15 @@
     <p th:errors="*{name}"></p>
   </div>
 
-
-  <div>
-    <label th:for="species">Dog</label>
-    <input type="radio" th:field="*{species}" value="0" />
-    <label th:for="species">Cat</label>
-    <input type="radio" th:field="*{species}" value="1" />
-    <p th:errors="*{species}"></p>
-  </div>
-
+<div>
+  <label th:for="species">Species</label>
+  <select th:field="*{species}">
+    <option value=""></option>
+    <option th:each="species : ${speciesList}" th:value="${species.id}" th:text="${species.type}">
+    </option>
+  </select>
+  <p th:errors="*{species}">/p>
+</div>
 
   <div>
     <label th:for="breed">Breed</label>

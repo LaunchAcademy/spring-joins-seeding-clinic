@@ -37,11 +37,9 @@ public class Pet {
   @Column
   private String name;
 
-  @NotBlank
-  @Size(max=10)
-  @Pattern(regexp = "^([^0-9]*)$", message = "must not contain numbers")
-  @Column
-  private String species;
+  @ManyToOne
+  @JoinColumn(name="species_id", nullable = false)
+  private Species species;
 
   @NotBlank
   @Size(max=15)

@@ -1,7 +1,9 @@
 package com.launchacademy.pettracker.controllers;
 
 import com.launchacademy.pettracker.models.Pet;
+import com.launchacademy.pettracker.models.Species;
 import com.launchacademy.pettracker.repositories.PetsRepository;
+import com.launchacademy.pettracker.repositories.SpeciesRepository;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class PetsController {
   private PetsRepository petsRepository;
+  private SpeciesRepository speciesRepository;
 
   @Autowired
   public PetsController(PetsRepository petsRepository){
+    this.petsRepository = petsRepository;
+  }
+
+  @Autowired
+  public void SpeciesRepository(SpeciesRepository speciesRepository){
+    this.speciesRepository = speciesRepository;
+  }
+
+  @Autowired
+  public void PetsRepository(PetsRepository petsRepository){
     this.petsRepository = petsRepository;
   }
 
@@ -46,12 +59,14 @@ public class PetsController {
   @GetMapping("/pets/new")
   public String newPet(@Autowired Pet pet, Model model){
     model.addAttribute("pet", pet);
+    populateLookupData(model);
     return "pets/new";
   }
 
   @PostMapping("/addPet")
   public String addPet(@ModelAttribute @Valid Pet pet, BindingResult binding, Model model) {
     if(binding.hasErrors()){
+      populateLookupData(model);
       return "pets/new";
     }
     else {
@@ -59,5 +74,10 @@ public class PetsController {
       model.addAttribute(pet);
       return "redirect:/pets/index";
     }
+  }
+
+  private void populateLookupData(Model model){
+    List<Species> speciesList = speciesRepository.findAll();
+    model.addAttribute("speciesList", speciesList);
   }
 }

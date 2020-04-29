@@ -8,8 +8,8 @@
 <h1>Pet Options</h1>
 
 <div th:each="pet : ${pets}">
-  <h2 th:text="${pet.name}">Pet Name</h2>
-  <p th:text="${pet.species}"></p>
+    <h2 th:text="${pet.name}">Pet Name</h2>
+    <p th:text="${pet.species.type}"></p>
 </div>
 <a href="/pets/new">Add a new pet</a>
 </body>

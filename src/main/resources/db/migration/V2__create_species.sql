@@ -1,0 +1,5 @@
+CREATE TABLE species(
+  id SERIAL PRIMARY KEY,
+  type VARCHAR(255) NOT NULL,
+  description VARCHAR(255)
+);
